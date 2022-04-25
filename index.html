@@ -62,7 +62,18 @@
         <section class="hero">
             <div class="container">
               <h1 class="hero-title">Эффективные решения для вашего бизнеса</h1>
-              <button class="btn" type="button">Заказать услугу</button>
+              <button class="btn " data-modal-open type="button" >Заказать услугу</button>
+              <div class="backdrop is-hidden" data-modal>
+                  <div class="modal">
+                      <form action=""></form>
+
+                     <button class="close" data-modal-close type="button">
+                        <svg class="modal-icon" width="18" height="18">
+                            <use href="./images/symbol-defs.svg#icon-close-modal"></use>
+                        </svg>
+                    </button>
+                  </div>
+              </div>
             </div>
         </section>
         <!-- Преимущества section Features-->
@@ -116,25 +127,36 @@
             <ul class="projects-list">
                 
                 <li class="projects-item">
-                    <img 
-                    src="./images/desk-office.jpg"
-                    width="370"
-                    height="294"
-                    alt="Программист, работающий за своим компьютером">
+                    <div class="thumb">
+
+                        <img 
+                        src="./images/desk-office.jpg"
+                        width="370"
+                        height="294"
+                        alt="Программист, работающий за своим компьютером">
+                        <p class="label">Десктопные приложения</p>
+                    </div>
                 </li>
                 <li class="projects-item">
-                    <img 
-                    src="./images/web-ui-designers.jpg" 
-                    width="370" 
-                    height="294"
-                    alt="Разработка интерфейся для мобильных телефонов">
+                    <div class="thumb">
+                        <img 
+                        src="./images/web-ui-designers.jpg" 
+                        width="370" 
+                        height="294"
+                        alt="Разработка интерфейся для мобильных телефонов">
+                        <p class="label">Мобильные приложения</p>
+                    </div>
                 </li>
                 <li class="projects-item">
-                    <img 
-                    src="./images/graphic-tablet.jpg" 
-                    width="370" 
-                    height="294"
-                    alt="Веб дизайнер с графическим планшетом">
+                    <div class="thumb">
+                        <img 
+                        src="./images/graphic-tablet.jpg" 
+                        width="370" 
+                        height="294"
+                        alt="Веб дизайнер с графическим планшетом">
+                        <p class="label">Дизайнерские решения</p>
+                    </div>
+
                 </li>
             </ul>
             </div>
@@ -423,6 +445,7 @@
 
         </div>
     </footer>
-
+<!-- Ставим перед закрывающим тегом body -->
+<script src="./js/modal.js"></script>
 </body>
 </html>
