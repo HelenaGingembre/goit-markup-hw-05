@@ -82,10 +82,11 @@ body {
 /* header */
 .header {
   width: 100%;
-  position: fixed;
-  z-index: 1;
+  /* position: fixed;
+  z-index: 1; */
   background-color: var(--bg-color-header);
   border-bottom: 1px solid var(--line-color);
+  /* background-color: rgba(255, 255, 255, 0.4); */
 }
 .header > .container {
   display: flex;
@@ -137,6 +138,9 @@ body {
   /* font-size: 14px; */
   /* line-height: 1.17; 16.41px/14px =1.17 */
   letter-spacing: 0.02em;
+  transition-property: color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .nav-list .current {
   color: var(--accent-color);
@@ -145,7 +149,9 @@ body {
   position: relative;
 }
 
-.link.current::after {
+.link.current::after,
+.nav-list .link::after,
+.nav-address-item::after {
   position: absolute;
   content: '';
   bottom: -1px;
@@ -154,6 +160,27 @@ body {
   height: 4px;
   background-color: var(--accent-color);
   border-radius: 2px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-list .link::after,
+.nav-address-item::after {
+  opacity: 0;
+  transform: scale(0);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link.current::after {
+  opacity: 1;
+  transform: scale(1);
+}
+.nav-list .link:hover::after,
+.nav-list .link:focus::after,
+.nav-address-item:hover::after,
+.nav-address-item:focus::after {
+  opacity: 1;
+  transform: scale(1);
 }
 .nav-address {
   margin-left: auto;
@@ -163,6 +190,7 @@ body {
 }
 
 .nav-address-item {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -175,6 +203,7 @@ body {
 }
 .nav-address-item .link {
   color: inherit;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-address-item:hover .link,
@@ -237,6 +266,8 @@ body {
   border: none;
 
   cursor: pointer;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hero .btn:hover,
 .hero .btn:focus {
@@ -418,6 +449,8 @@ body {
   border-radius: 50%;
   background-color: transparent;
   fill: var(--social-color);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .team-social-link:hover,
 .team-social-link:focus {
@@ -461,6 +494,8 @@ body {
   border: 1px solid var(--social-color);
   box-sizing: border-box;
   border-radius: 4px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .customer-item-icon {
   width: 106px;
@@ -511,6 +546,7 @@ footer .logo {
 
 .address-item .link {
   color: var(--link-color-address);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 /* .social-footer {
   padding-top: 12px;
@@ -543,6 +579,8 @@ footer .logo {
   border-radius: 50%;
   background-color: var(--bg-social-icon-footer);
   fill: var(--text-color-logo-footer);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-social-link:hover,
@@ -576,6 +614,9 @@ footer .logo {
   border: 1px solid transparent; /* прозрачная рамка*/
   border-radius: 4px;
   cursor: pointer;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .filter-item .btn:hover,
 .filter-item .btn:focus,
@@ -583,11 +624,9 @@ footer .logo {
 .filter-item .current-btn {
   color: var(--btn-text-color);
   background: var(--accent-color);
-
   /* shadow-middle */
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
     0px 2px 2px rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
 }
 
 .portfolio-list {
@@ -610,10 +649,7 @@ footer .logo {
 }
 .portfolio-card .link {
   display: block;
-  /* transform: box-shadow; */
   transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  /* position: relative; */
-  /* overflow: hidden; */
 }
 .portfolio-card .link:hover,
 .portfolio-card .link:focus {
@@ -630,7 +666,8 @@ footer .logo {
   position: relative;
   overflow: hidden;
 }
-.portfolio-card .link:hover .card-overlay {
+.portfolio-card .link:hover .card-overlay,
+.portfolio-card .link:focus .card-overlay {
   transform: translatey(0);
 }
 .card-overlay {
@@ -683,14 +720,16 @@ footer .logo {
 /* modal  */
 .backdrop {
   position: fixed;
-  z-index: 2;
+  z-index: 99;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
+  transition: opacity 500ms visibility 500ms;
 }
-.backdrop.is-hidden {
+.is-hidden {
+  /* патерн приховування єлементів */
   visibility: hidden;
   opacity: 0;
   pointer-events: none; /* не регистрирует на элементе событие*/
@@ -699,7 +738,7 @@ footer .logo {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+
   width: 528px;
   height: 581px;
   background-color: rgba(255, 255, 255, 1);
@@ -707,7 +746,14 @@ footer .logo {
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
+
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  transition: transform 1000ms;
 }
+.backdrop.is-hidden .modal {
+  transform: scale(0.5) rotate(180deg);
+}
+
 .close {
   position: absolute;
   margin: 8px;
@@ -728,4 +774,13 @@ footer .logo {
   width: 18px;
   height: 18px;
   fill: var(--text-color-logo);
+}
+@keyframes transformModal {
+  0% {
+    transform: scale(0) rotate(0deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
 }
