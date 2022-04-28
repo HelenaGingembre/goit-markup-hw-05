@@ -82,11 +82,11 @@ body {
 /* header */
 .header {
   width: 100%;
-  /* position: fixed;
-  z-index: 1; */
-  background-color: var(--bg-color-header);
+  position: fixed;
+  z-index: 1;
+  /* background-color: var(--bg-color-header); */
   border-bottom: 1px solid var(--line-color);
-  /* background-color: rgba(255, 255, 255, 0.4); */
+  background-color: rgba(255, 255, 255, 0.8);
 }
 .header > .container {
   display: flex;
@@ -97,7 +97,9 @@ body {
   align-items: center;
   justify-content: flex-start;
 }
-
+main {
+  padding-top: 80.38px;
+}
 .logo {
   margin-right: 93px;
   font-family: 'Raleway', sans-serif;
